@@ -5,6 +5,10 @@
   "author": {
     "name": "il_kol"
   },
+  "repository": {
+    "type": "git",
+    "directory": "https://github.com/DmitryMukhlisov/pawn.git"
+  },
   "version": "0.0.13",
   "publisher": "ilkol",
   "icon": "pawn.png",
@@ -25,30 +29,21 @@
         "path": "./snippets/snippets.code-snippets"
       }
     ],
-    "languages": [
-      {
-        "id": "pawn",
-        "aliases": [
-          "pawn",
-          "pawn"
-        ],
-        "extensions": [
-          ".pwn",
-          ".inc"
-        ],
-        "icon": {
-          "light": "./pawn_dark.svg",
-          "dark": "./pawn_dark.svg"
-        },
-        "configuration": "./language-configuration.json"
-      }
-    ],
-    "grammars": [
-      {
-        "language": "pawn",
-        "scopeName": "source.pawn",
-        "path": "./syntaxes/pawn.tmLanguage.json"
-      }
-    ]
+    "languages": [{
+      "id": "pawn",
+      "aliases": ["pawn", "pawn"],
+      "extensions": [".pwn",".inc"],
+      "icon": {
+        "light": "./pawn_dark.svg",
+        "dark": "./pawn_dark.svg"
+      },
+      
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "pawn",
+      "scopeName": "source.pawn",
+      "path": "./syntaxes/pawn.tmLanguage.json"
+    }]
   }
 }
