@@ -1,0 +1,10 @@
+{
+    "iconDefinitions": {
+      "_pawn_File": {
+        "iconPath": "./pawn.svg",
+      }
+    },
+    "languageIds": {
+        "pawn": "_pawn_File"
+    }
+  }

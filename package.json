@@ -1,0 +1,45 @@
+{
+  "name": "pawnlanguage",
+  "displayName": "pawn language-helper",
+  "description": "Extention for pawn language coding",
+  "author": {
+    "name": "il_kol"
+  },
+  "version": "0.0.12",
+  "publisher": "ilkol",
+  "icon": "pawn.png",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "cpp",
+        "path": "./snippets/snippets.code-snippets"
+      },
+      {
+        "language": "pawn",
+        "path": "./snippets/snippets.code-snippets"
+      }
+    ],
+    "languages": [{
+      "id": "pawn",
+      "aliases": ["pawn", "pawn"],
+      "extensions": [".pwn",".inc"],
+      "icon": {
+        "light": "./pawn_dark.svg",
+        "dark": "./pawn_dark.svg"
+      },
+      
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "pawn",
+      "scopeName": "source.pawn",
+      "path": "./syntaxes/pawn.tmLanguage.json"
+    }]
+  }
+}

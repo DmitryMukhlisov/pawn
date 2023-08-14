@@ -1,0 +1,44 @@
+{
+	"Цикл for": {
+		"prefix": ["for"],
+		"body": [
+			"for(new ${1:i}${2: = ${3:0}}; ${1:i} < ${4}; ${1:i}++) {",
+			"\t$0",
+			"}" 
+		],
+		"description": "цикл for"
+	},
+	"Однострочный цикл for": {
+		"prefix": ["for"],
+		"body": [
+			"for(new ${1:i}${2: = ${3:0}}; ${1:i} < ${4}; ${1:i}++)",
+			"\t$0;",
+		],
+		"description": "цикл for"
+	},
+	"include once":{
+		"prefix": [
+			"#pragma once",
+			"#include once"
+		],
+		"body": [
+			"#if defined _INC_${1:${TM_FILENAME/(.*)\\..+$/$1/}}",
+			"\t#endinput",
+			"#else",
+			"\t#define _INC_${1:${TM_FILENAME/(.*)\\..+$/$1/}}",
+			"#endif",
+			"",
+			"$0"
+		]
+	},
+	"новая функция (stock)":{
+		"prefix": "stock",
+		"body": [
+			"stock ${1:${2|int,bool,Float|}:}${3:function}(${4:args})",
+			"{",
+			"\t$0",
+			"\treturn 0;",
+			"}"
+		]
+	}
+}
