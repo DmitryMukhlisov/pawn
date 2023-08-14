@@ -996,7 +996,7 @@
 			]
 		},
 		"function_call":{
-			"begin": "((?:[a-zA-Z_]|)(?:[a-zA-Z0-9_]|)*)\\b(\\()",
+			"begin": "((?:[a-zA-Z_])(?:[a-zA-Z0-9_])*)\\b(\\()",
 			"beginCaptures": {
 				"1":{
 					"name": "entity.name.function.call.pawn"
@@ -1015,9 +1015,6 @@
 			"patterns": [
 				{
 					"include": "#parameter_or_maybe_value"
-				},
-				{
-					"include": "#evaluation_context"
 				}
 			]
 		},
@@ -1026,9 +1023,26 @@
 			"match": "\\="
 		},
 		"parameter_or_maybe_value":{
-			"begin": "(?=\\w)",
+			"begin": "((?:(?:(?:\\s*+(\\/\\*)((?:[^\\*]++|\\*+(?!\\/))*+(\\*\\/))\\s*+)+)|(?:\\s++)|(?<=\\W)|(?=\\W)|^|(?:\\n?$)|\\A|\\Z))(?=[\\w\"])",
 			"end": "(?:(?=\\))|(,))",
-			"beginCaptures": {},
+			"beginCaptures": {
+				"1": {
+					"patterns": [
+						{
+							"include": "#inline_comment"
+						}
+					]
+				},
+				"2": {
+					"name": "comment.block.cpp punctuation.definition.comment.begin.cpp"
+				},
+				"3": {
+					"name": "comment.block.cpp"
+				},
+				"4": {
+					"name": "comment.block.cpp punctuation.definition.comment.end.cpp"
+				}
+			},
 			"endCaptures": {
 				"1": {
 					"name": "punctuation.separator.delimiter.comma.pawn"
@@ -1356,7 +1370,7 @@
 							"include": "#number_literal"
 						},
 						{
-							"include": "#brackets"	
+							"include": "#square_brackets"	
 						},
 						{
 							"include": "#evaluation_context"
@@ -1399,7 +1413,7 @@
 			]
 		},
 		"square_brackets":{
-			"begin": "([\\w\\d_]+)*(\\[)",
+			"begin": "([\\w]*)(\\[)",
 			"end": "\\]",
 			"beginCaptures": {
 				"1": {
