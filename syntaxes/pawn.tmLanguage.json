@@ -24,9 +24,6 @@
 			"include": "#new_var"
 		},
 		{
-			"include": "#function_param"
-		},
-		{
 			"include": "#function"
 		},
 		{
@@ -1051,6 +1048,9 @@
 			"name": "meta.parameter.pawn",
 			"patterns": [
 				{
+					"include": "#language_constants"
+				},
+				{
 					"match": "((?:(?:(?:(?:static)|(?:const))))+(?:\\s+))?((?<!\\w)(?:(?:(?:(?:_)|(?:void)|(?:Float)|(?:int)|(?:bool)))|(?:[a-zA-Z_]\\w*)(?:\\s|\\n)*:))?([a-zA-Z_]\\w*)(?:\\s*)(?=,|\\[|=|\\))",
 					"captures": {
 						"1": {
@@ -1430,6 +1430,9 @@
 			},
 			"name": "meta.bracket.square.array.pawn",
 			"patterns": [
+				{
+					"include": "#operators"
+				},
 				{
 					"include": "#number_literal"
 				},
