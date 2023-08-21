@@ -882,23 +882,32 @@
 					"patterns": [
 						{
 
-							
-							"begin": "(?:case\\s+[\\d\\w\\.,•\\{\\}#№\\s']+|default):",
-							"beginCaptures": {
-								"0":{
-									"patterns": [
-										{
-											"include": "#case_statement"
-										},
-										{
-											"include": "#default_statement"
-										}
-									]
-								}
-							},
+							"begin": "(?=case|default)",
+							"beginCaptures": {},
 							"name": "meta.block.case.pawn",
 							"end": "(?<=\\}|;)",
 							"patterns": [
+								{
+									"begin": "(?:case|default)",
+									"end": ":",
+									"beginCaptures": {
+										"0": {
+											"patterns": [
+												{
+													"include": "#case_statement"
+												},
+												{
+													"include": "#default_statement"
+												}
+											]
+										}
+									},
+									"patterns": [
+										{
+											"include": "#evaluation_context"
+										}
+									]
+								},
 								{
 									"begin": "\\{",
 									"end": "\\}",
@@ -1020,7 +1029,7 @@
 			"match": "\\="
 		},
 		"parameter_or_maybe_value":{
-			"begin": "((?:(?:(?:\\s*+(\\/\\*)((?:[^\\*]++|\\*+(?!\\/))*+(\\*\\/))\\s*+)+)|(?:\\s++)|(?<=\\W)|(?=\\W)|^|(?:\\n?$)|\\A|\\Z))(?=[\\w\"])",
+			"begin": "((?:(?:(?:\\s*+(\\/\\*)((?:[^\\*]++|\\*+(?!\\/))*+(\\*\\/))\\s*+)+)|(?:\\s++)|(?<=\\W)|(?=\\W)|^|(?:\\n?$)|\\A|\\Z))(?=[\\w\"'])",
 			"end": "(?:(?=\\))|(,))",
 			"beginCaptures": {
 				"1": {
