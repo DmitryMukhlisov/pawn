@@ -517,6 +517,9 @@
 				},
 				{
 					"include": "#line_continuation_character"
+				},
+				{
+					"include": "#perproccesor_warnings_errors"
 				}
 			]
 		},
@@ -739,6 +742,19 @@
 				}
 			]
 		},
+		"perproccesor_warnings_errors": {
+			"begin": "^\\s*((#)\\s*(warning|error))\\b\\s*",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.control.directive.$3.pawn"
+				},
+				"2": {
+					"name": "punctuation.definition.directive.pawn"
+				}
+			},
+			"end": "(?=(?://|/\\*))|(?<!\\\\)(?=\\n)",
+			"name": "meta.preprocessor.$3.pawn"
+		},
 		"declaration_functions": {
 			"name": "storage.modifier.$1.pawn",
 			"match": "(publics:|public|forward|native|stock)"
@@ -881,6 +897,9 @@
 					"name": "meta.body.switch.pawn",
 					"patterns": [
 						{
+							"include": "#ever_present_context"
+						},
+						{
 
 							"begin": "(?=case|default)",
 							"beginCaptures": {},
@@ -1002,7 +1021,7 @@
 			]
 		},
 		"function_call":{
-			"begin": "((?:[a-zA-Z_])(?:[a-zA-Z0-9_])*)\\b(\\()",
+			"begin": "((?:[a-zA-Z_])(?:[a-zA-Z0-9_])*)\\s*(\\()",
 			"beginCaptures": {
 				"1":{
 					"name": "entity.name.function.call.pawn"
