@@ -9,11 +9,11 @@
     "type": "git",
     "directory": "https://github.com/DmitryMukhlisov/pawn.git"
   },
-  "version": "0.0.16",
+  "version": "0.0.17",
   "publisher": "ilkol",
   "icon": "pawn.png",
   "engines": {
-    "vscode": "^1.80.0"
+    "vscode": "^1.83.0"
   },
   "categories": [
     "Programming Languages"
