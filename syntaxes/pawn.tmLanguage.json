@@ -568,7 +568,7 @@
 			]
 		},
 		"preprocessor_conditional_standalone": {
-			"match": "^\\s*(#)(?:\\s+)?(?<!\\w)(endif|else|elseif)(?!\\w)",
+			"match": "^\\s*(#)(?:\\s+)?(?<!\\w)(endif|else|elseif|emit)(?!\\w)",
 			"captures": {
 				"1": {
 					"name": "punctuation.definition.directive.pawn"
@@ -1526,14 +1526,6 @@
 		"type_char":{
 			"match": "\\bchar\\b",
 			"name": "storage.char.pawn"
-		},
-		"type_float":{
-			"match": "\\bFloat\\b",
-			"name": "storage.float.pawn"
-		},
-		"type_bool": {
-			"match": "\\bbool\\b",
-			"name": "storage.bool.pawn"
 		},
 		"storage_modifier":{
 			"name": "storage.$1.modifier",
