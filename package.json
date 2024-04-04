@@ -1,7 +1,7 @@
 {
   "name": "pawnlanguage",
-  "displayName": "pawn language-helper",
-  "description": "Extention for pawn language coding",
+  "displayName": "The Pawn Language",
+  "description": "Extension for VSCode support for the Pawn language",
   "author": {
     "name": "il_kol"
   },
@@ -9,7 +9,7 @@
     "type": "git",
     "directory": "https://github.com/DmitryMukhlisov/pawn.git"
   },
-  "version": "0.1.0",
+  "version": "0.2.2",
   "publisher": "ilkol",
   "icon": "pawn.png",
   "engines": {
@@ -25,10 +25,6 @@
   "contributes": {
     "snippets": [
       {
-        "language": "cpp",
-        "path": "./snippets/snippets.code-snippets"
-      },
-      {
         "language": "pawn",
         "path": "./snippets/snippets.code-snippets"
       }
@@ -37,9 +33,9 @@
       {
         "id": "pawn",
         "aliases": [
-          "pawn",
-          "pawn"
-        ],
+			"pwn",
+			"pawno"
+		],
         "extensions": [
           ".pwn",
           ".inc"

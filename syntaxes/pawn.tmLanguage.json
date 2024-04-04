@@ -31,6 +31,9 @@
 		},
 		{
 			"include": "#enum"
+		},
+		{
+			"include": "#var_assigment"
 		}
 	],
 	"repository": {
@@ -108,8 +111,27 @@
 				}
 			]
 		},
-		"var_initialization":{
-
+		"var_assigment":{
+			"name": "meta.initialization.pawn",
+			"begin": "\\b[\\s\\n]*([\\w]+)[\\s\\n]*=",
+			"beginCaptures": {
+				"1":{
+					"name": "variable.other.pawn"
+				}
+			},
+			"end": "(?=;|\\))",
+			"patterns": [
+				{
+					"include": "#evaluation_context"
+				},
+				{
+					"include": "#variable"
+				}
+			]
+		},
+		"variable": {
+			"match": "[\\w]+",
+			"name": "variable.other.pawn"
 		},
 		"number_literal":{
 			"match": "(?<!\\w)\\.?\\d(?:(?:[0-9a-zA-Z_\\.]|')|(?<=[eEpP])[+-])*",
@@ -1157,6 +1179,12 @@
 				},
 				{
 					"include": "#comma"
+				},
+				{
+					"include": "#var_assigment"
+				},
+				{
+					"include": "variable"
 				}			
 			]
 		},
