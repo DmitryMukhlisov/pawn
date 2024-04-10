@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { getDefaultComplitions } from './DefaultComplitions/DefaultComplitions';
+import { ColorProvider } from './Providers/ColorProvider';
 
 interface IDefine {
 	name: string
@@ -49,6 +50,8 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 	context.subscriptions.push(provider1);
+	const colorProvider = new ColorProvider();
+	context.subscriptions.push(vscode.languages.registerColorProvider('pawn', colorProvider));
 }
 
 function findDefines(text: string, defines: Map<string, IDefine>): void {

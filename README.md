@@ -8,6 +8,8 @@
 Расширение включает в себя:
 - Синтаксическую подсветку кода для языка программирования Pawn
 - Несколько быстрых вводов фрагментов кода (snipets) 
+- Встроенный инструмент выбора цвета (inline color picker)
+![https://i.imgur.com/l3dlLsr.png](https://i.imgur.com/l3dlLsr.png)
 
 
 ## Планы
@@ -31,7 +33,8 @@
 
 ![https://i.imgur.com/BcflN78.png](https://i.imgur.com/BcflN78.png)
 
-
+Подсветка SQL синтаксиска:
+![https://i.imgur.com/rMJPUDt.png](https://i.imgur.com/rMJPUDt.png)
 
 # En
 
@@ -42,7 +45,8 @@ Extension for VSCode support for the Pawn programming language (SA:MP)
 The extension includes:
 - Syntax highlighting for the Pawn programming language
 - A few snipets
-
+- Inline color picker
+![https://i.imgur.com/l3dlLsr.png](https://i.imgur.com/l3dlLsr.png)
 
 ## Plans
 
@@ -64,4 +68,8 @@ The extension includes:
 ![https://i.imgur.com/BiCf1J9.png](https://i.imgur.com/BiCf1J9.png)
 
 ![https://i.imgur.com/BcflN78.png](https://i.imgur.com/BcflN78.png)
+
+SQL syntax highlighting:
+![https://i.imgur.com/rMJPUDt.png](https://i.imgur.com/rMJPUDt.png)
+
 
