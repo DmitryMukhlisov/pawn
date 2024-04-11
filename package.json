@@ -9,7 +9,7 @@
     "type": "git",
     "directory": "https://github.com/DmitryMukhlisov/pawn.git"
   },
-  "version": "0.2.4",
+  "version": "0.2.5",
   "publisher": "ilkol",
   "icon": "pawn.png",
   "engines": {
