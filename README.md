@@ -9,7 +9,7 @@
 - Синтаксическую подсветку кода для языка программирования Pawn
 - Несколько быстрых вводов фрагментов кода (snipets) 
 - Встроенный инструмент выбора цвета (inline color picker)
-![https://i.imgur.com/l3dlLsr.png](https://i.imgur.com/l3dlLsr.png)
+![https://i.imgur.com/LB0JmSh.png](https://i.imgur.com/LB0JmSh.png)
 
 
 ## Планы
@@ -46,7 +46,7 @@ The extension includes:
 - Syntax highlighting for the Pawn programming language
 - A few snipets
 - Inline color picker
-![https://i.imgur.com/l3dlLsr.png](https://i.imgur.com/l3dlLsr.png)
+![https://i.imgur.com/LB0JmSh.png](https://i.imgur.com/LB0JmSh.png)
 
 ## Plans
 
