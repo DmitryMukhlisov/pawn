@@ -1359,6 +1359,9 @@
 						{
 							"match": "(?x) (?!%')(?!%\")%\n(\\d+\\$)?\t\t\t\t\t\t   # field (argument #)\n[#0\\- +']*\t\t\t\t\t\t  # flags\n[,;:_]?\t\t\t\t\t\t\t  # separator character (AltiVec)\n((-?\\d+)|\\*(-?\\d+\\$)?)?\t\t  # minimum field width\n(\\.((-?\\d+)|\\*(-?\\d+\\$)?)?)?\t# precision\n(hh|h|ll|l|j|t|z|q|L|vh|vl|v|hv|hl)? # length modifier\n[diouxXDOUeEfFgGaACcSspn%]\t\t   # conversion type",
 							"name": "constant.other.placeholder"
+						},
+						{
+							"include": "#sql_context"
 						}
 					]
 				}
@@ -1576,6 +1579,149 @@
 				"name": "keyword.control.$1.pawn",
 				"match": "\\b(if|while|for|return|foreach|break|continue|do|else)\\b"
 			}]
+		},
+
+		"sql_context":{
+			"begin": "\\b(SELECT|UPDATE|SET|DELETE|FLUSH|PRIVILEGES|WHERE|FROM|OR|AND|ORDER|BY|LEFT|RIGHT|TOP|UNION|TRUNCATE|DESC|JOIN|ON|LIMIT|VALUES|INSERT|INTO|AS|ASC|ANY|CREATE|DATABASE|VIEW|REPLACE|UNIQUE|DEFAULT|DROP|INDEX|IN|GROUP|NULL|IS|NOT|KEY|PRIMARY|ALL)\\b",
+			"beginCaptures": {
+				"1": {
+					"patterns": [
+						{
+							"include": "#sql_keywords"
+						}
+					]
+				}
+			},
+			"end": "(?=\")",
+			"name": "source.sql",
+			"patterns": [
+				{
+					"match": "(?x) (?!%')(?!%\")%\n(\\d+\\$)?\t\t\t\t\t\t   # field (argument #)\n[#0\\- +']*\t\t\t\t\t\t  # flags\n[,;:_]?\t\t\t\t\t\t\t  # separator character (AltiVec)\n((-?\\d+)|\\*(-?\\d+\\$)?)?\t\t  # minimum field width\n(\\.((-?\\d+)|\\*(-?\\d+\\$)?)?)?\t# precision\n(hh|h|ll|l|j|t|z|q|L|vh|vl|v|hv|hl)? # length modifier\n[diouxXDOUeEfFgGaACcSspn%]\t\t   # conversion type",
+					"name": "constant.other.placeholder.pawn"
+				},
+				{
+					"include": "#sql_keywords"
+				},
+				{
+					"include": "#sql_all"
+				},
+				{
+					"include": "#sql_punc"
+				},
+				{
+					"include": "#number_literal"
+				},
+				{
+					"include": "#sql_operators"
+				},
+				{
+					"include": "#sql_fnction"
+				},
+				{
+					"include": "#sql_tables_name"
+				}
+			]
+		},
+		"sql_keywords": {
+			"name": "keyword.control.$1.sql",
+			"match": "\\b(SELECT|UPDATE|SET|DELETE|FLUSH|PRIVILEGES|WHERE|FROM|OR|AND|ORDER|BY|LEFT|RIGHT|TOP|UNION|TRUNCATE|DESC|JOIN|ON|LIMIT|VALUES|INSERT|INTO|AS|ASC|ANY|CREATE|DATABASE|VIEW|REPLACE|UNIQUE|DEFAULT|DROP|INDEX|IN|GROUP|NULL|IS|NOT|KEY|PRIMARY|ALL)\\b"
+		},
+		"sql_all": {
+			"name": "constant.language.sql",
+			"match": "\\*"
+		},
+		"sql_punc": {
+			"patterns": [
+				{
+					"include": "#sql_seporator"
+				},
+				{
+					"include": "#sql_semi"
+				}
+			]
+		},
+		"sql_semi": {
+			"name": "punctuation.terminator.statement.sql",
+			"match": ";"
+		},
+		"sql_seporator":{
+			"match": ",",
+			"name": "punctuation.separator.parameters.sql"
+		},
+		"sql_operators":{
+			"patterns": [
+				{
+					"match": "--",
+					"name": "keyword.operator.decrement.pawm"
+				},
+				{
+					"match": "\\+\\+",
+					"name": "keyword.operator.increment.pawn"
+				},
+				{
+					"match": "%=|\\+=|-=|\\*=|(?<!\\()\\/=",
+					"name": "keyword.operator.assignment.compound.pawn"
+				},
+				{
+					"match": "!=|<=|>=|==|<|>",
+					"name": "keyword.operator.comparison.pawn"
+				},
+				{
+					"match": "&&|!|\\|\\|",
+					"name": "keyword.operator.logical.pawn"
+				},
+				{
+					"match": "%|\\*|\\/|-|\\+",
+					"name": "keyword.operator.arithmetic.pawn"
+				},
+				{
+					"include": "#assignment_operator"
+				}
+			]
+		},
+		"sql_fnction": {
+			"begin": "((?:[a-zA-Z_])(?:[a-zA-Z0-9_])*)\\s*(\\()",
+			"beginCaptures": {
+				"1":{
+					"name": "entity.name.function.call.sql"
+				},
+				"2":{
+					"name": "punctuation.section.arguments.begin.bracket.round.function.call.sql"
+				}
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"1":{
+					"name": "punctuation.section.arguments.end.bracket.round.function.call.sql"
+				}
+			},
+			"contentName": "meta.body.function.call.sql",
+			"patterns": [
+				{
+					"include": "#sql_context"
+				}
+			]
+		},
+		"sql_tables_name": {
+			"begin": "`",
+			"beginCaptures": {
+				"0":{
+					"name": "punctuation.definition.string.begin.sq;"
+				}
+			},
+			"end": "(`)(?:((?:[a-zA-Z]|)(?:[a-zA-Z0-9_])*)|((?:[a-zA-Z0-9_])*))?",
+			"endCaptures": {
+				"1": {
+					"name": "punctuation.definition.string.end.sql"
+				},
+				"2": {
+					"name": "keyword.other.suffix.literal.user-defined.reserved.string.pawn"
+				},
+				"3": {
+					"name": "keyword.other.suffix.literal.user-defined.string.pawn"
+				}
+			},
+			"name": "variable.other.sql"
 		}
 	},
 	"scopeName": "source.pawn"

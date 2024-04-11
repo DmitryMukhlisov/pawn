@@ -11,11 +11,11 @@
 - Встроенный инструмент выбора цвета (inline color picker)
 ![https://i.imgur.com/LB0JmSh.png](https://i.imgur.com/LB0JmSh.png)
 
+- Подсветка SQL синтаксиска в строках с запросами
+
+![https://i.imgur.com/rMJPUDt.png](https://i.imgur.com/rMJPUDt.png)
 
 ## Планы
-
-### Уже на подходе:
-- Подсветка SQL синтаксиска в строках с запросами
 
 ### Перспективы:
 - Семантическая подсветка кода
@@ -33,8 +33,6 @@
 
 ![https://i.imgur.com/BcflN78.png](https://i.imgur.com/BcflN78.png)
 
-Подсветка SQL синтаксиска:
-![https://i.imgur.com/rMJPUDt.png](https://i.imgur.com/rMJPUDt.png)
 
 # En
 
@@ -46,12 +44,14 @@ The extension includes:
 - Syntax highlighting for the Pawn programming language
 - A few snipets
 - Inline color picker
+
 ![https://i.imgur.com/LB0JmSh.png](https://i.imgur.com/LB0JmSh.png)
 
-## Plans
-
-### Already on the way:
 - SQL syntax highlighting in query strings
+
+![https://i.imgur.com/rMJPUDt.png](https://i.imgur.com/rMJPUDt.png)
+
+## Plans
 
 ### Prospects:
 - Semantic code highlighting
@@ -69,7 +69,5 @@ The extension includes:
 
 ![https://i.imgur.com/BcflN78.png](https://i.imgur.com/BcflN78.png)
 
-SQL syntax highlighting:
-![https://i.imgur.com/rMJPUDt.png](https://i.imgur.com/rMJPUDt.png)
 
 
