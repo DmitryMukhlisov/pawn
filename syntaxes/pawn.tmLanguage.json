@@ -1185,7 +1185,7 @@
 				},
 				{
 					"include": "variable"
-				}			
+				}
 			]
 		},
 		"operators": {
@@ -1328,6 +1328,9 @@
 						{
 							"match": "(?x) (?!%')(?!%\")%\n(\\d+\\$)?\t\t\t\t\t\t   # field (argument #)\n[#0\\- +']*\t\t\t\t\t\t  # flags\n[,;:_]?\t\t\t\t\t\t\t  # separator character (AltiVec)\n((-?\\d+)|\\*(-?\\d+\\$)?)?\t\t  # minimum field width\n(\\.((-?\\d+)|\\*(-?\\d+\\$)?)?)?\t# precision\n(hh|h|ll|l|j|t|z|q|L|vh|vl|v|hv|hl)? # length modifier\n[diouxXDOUeEfFgGaACcSspn%]\t\t   # conversion type",
 							"name": "constant.other.placeholder"
+						},
+						{
+							"include": "#sql_context"
 						}
 					]
 				},
@@ -1359,9 +1362,6 @@
 						{
 							"match": "(?x) (?!%')(?!%\")%\n(\\d+\\$)?\t\t\t\t\t\t   # field (argument #)\n[#0\\- +']*\t\t\t\t\t\t  # flags\n[,;:_]?\t\t\t\t\t\t\t  # separator character (AltiVec)\n((-?\\d+)|\\*(-?\\d+\\$)?)?\t\t  # minimum field width\n(\\.((-?\\d+)|\\*(-?\\d+\\$)?)?)?\t# precision\n(hh|h|ll|l|j|t|z|q|L|vh|vl|v|hv|hl)? # length modifier\n[diouxXDOUeEfFgGaACcSspn%]\t\t   # conversion type",
 							"name": "constant.other.placeholder"
-						},
-						{
-							"include": "#sql_context"
 						}
 					]
 				}
@@ -1581,6 +1581,7 @@
 			}]
 		},
 
+		
 		"sql_context":{
 			"begin": "\\b(SELECT|UPDATE|SET|DELETE|FLUSH|PRIVILEGES|WHERE|FROM|OR|AND|ORDER|BY|LEFT|RIGHT|TOP|UNION|TRUNCATE|DESC|JOIN|ON|LIMIT|VALUES|INSERT|INTO|AS|ASC|ANY|CREATE|DATABASE|VIEW|REPLACE|UNIQUE|DEFAULT|DROP|INDEX|IN|GROUP|NULL|IS|NOT|KEY|PRIMARY|ALL)\\b",
 			"beginCaptures": {
