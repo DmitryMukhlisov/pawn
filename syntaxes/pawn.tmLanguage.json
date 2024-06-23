@@ -783,7 +783,7 @@
 		},
 		"function":{
 			"name": "meta.function.definition.pawn",
-			"begin": "^\\s*(?:(publics:|public|forward|native|stock)\\s)?\\s*((?<!\\w)(?:(?:(?:(?:_)|(?:void)|(?:Float)|(?:int)|(?:bool)))|(?:[a-zA-Z_]\\w*)(?:\\s|\\n)*:))?(\\w+)(?:\\()",
+			"begin": "^\\s*(?:(publics:|public|forward|native|stock)\\s)?\\s*((?<!\\w)(?:(?:(?:(?:_)|(?:void)|(?:Float)|(?:bool)))|(?:[a-zA-Z_]\\w*)(?:\\s|\\n)*:))?(\\w+)(?:\\()",
 			"beginCaptures": {
 				"0": {
 					"name": "meta.head.function.definition.pawn"
@@ -1101,7 +1101,7 @@
 					"include": "#language_constants"
 				},
 				{
-					"match": "((?:(?:(?:(?:static)|(?:const))))+(?:\\s+))?((?<!\\w)(?:(?:(?:(?:_)|(?:void)|(?:Float)|(?:int)|(?:bool)))|(?:[a-zA-Z_]\\w*)(?:\\s|\\n)*:))?([a-zA-Z_]\\w*)(?:\\s*)(?=,|\\[|=|\\))",
+					"match": "((?:(?:(?:(?:static)|(?:const))))+(?:\\s+))?((?<!\\w)(?:(?:(?:(?:_)|(?:void)|(?:Float)|(?:bool)))|(?:[a-zA-Z_]\\w*)(?:\\s|\\n)*:))?([a-zA-Z_]\\w*)(?:\\s*)(?=,|\\[|=|\\))",
 					"captures": {
 						"1": {
 							"patterns": [
@@ -1404,7 +1404,7 @@
 					"end": "(?:(?=;|\\))|(,))",
 					"patterns": [
 						{
-							"match": "((?:(?:(?:(?:static)|(?:const))))+(?:\\s+))?((?<!\\w)(?:(?:(?:(?:_)|(?:void)|(?:Float)|(?:int)|(?:bool)))|(?:[a-zA-Z_]\\w*)(?:\\s|\\n)*:))?\\s*([a-zA-Z_]\\w*)(?:\\s*)(?=,|\\[|=|;|\\))",
+							"match": "((?:(?:(?:(?:static)|(?:const))))+(?:\\s+))?((?<!\\w)(?:(?:(?:(?:_)|(?:void)|(?:Float)|(?:bool)))|(?:[a-zA-Z_]\\w*)(?:\\s|\\n)*:))?\\s*([a-zA-Z_]\\w*)(?:\\s*)(?=,|\\[|=|;|\\))",
 							"captures": {
 								"1": {
 									"patterns": [
@@ -1520,7 +1520,7 @@
 			}
 		},
 		"types":{
-			"match": "(?:\\b(void|int|_|bool|Float)\\b)*([\\w\\d_-]+)*",
+			"match": "(?:\\b(void|_|bool|Float)\\b)*([\\w\\d_-]+)*",
 			"captures": {
 				"1":{
 					"patterns": [
@@ -1551,7 +1551,7 @@
 			"name": "entity.name.type"
 		},
 		"type_int":{
-			"match": "\\bint|_\\b",
+			"match": "\\b_\\b",
 			"name": "storage.int.pawn"
 		},
 		"type_char":{
