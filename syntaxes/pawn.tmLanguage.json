@@ -15,6 +15,9 @@
 			"include": "#keywords_operators"
 		},
 		{
+			"include": "#function"
+		},
+		{
 			"include": "#evaluation_context"
 		},
 		{
@@ -22,9 +25,6 @@
 		},
 		{
 			"include": "#new_var"
-		},
-		{
-			"include": "#function"
 		},
 		{
 			"include": "#comments"
@@ -1610,6 +1610,9 @@
 					"include": "#sql_punc"
 				},
 				{
+					"include": "#sql_strings"
+				},
+				{
 					"include": "#number_literal"
 				},
 				{
@@ -1707,7 +1710,7 @@
 			"begin": "`",
 			"beginCaptures": {
 				"0":{
-					"name": "punctuation.definition.string.begin.sq;"
+					"name": "punctuation.definition.string.begin.sql"
 				}
 			},
 			"end": "(`)(?:((?:[a-zA-Z]|)(?:[a-zA-Z0-9_])*)|((?:[a-zA-Z0-9_])*))?",
@@ -1723,6 +1726,27 @@
 				}
 			},
 			"name": "variable.other.sql"
+		},
+		"sql_strings": {
+			"begin": "'",
+			"beginCaptures": {
+				"0":{
+					"name": "punctuation.definition.string.begin.sql"
+				}
+			},
+			"end": "(')(?:((?:[a-zA-Z]|)(?:[a-zA-Z0-9_])*)|((?:[a-zA-Z0-9_])*))?",
+			"endCaptures": {
+				"1": {
+					"name": "punctuation.definition.string.end.sql"
+				},
+				"2": {
+					"name": "keyword.other.suffix.literal.user-defined.reserved.string.pawn"
+				},
+				"3": {
+					"name": "keyword.other.suffix.literal.user-defined.string.pawn"
+				}
+			},
+			"name": "string.quoted.double.sql"
 		}
 	},
 	"scopeName": "source.pawn"
