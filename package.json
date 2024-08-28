@@ -1,82 +1,88 @@
 {
-  "name": "pawnlanguage",
-  "displayName": "The Pawn Language",
-  "description": "Extension for VSCode support for the Pawn language",
-  "author": {
-    "name": "il_kol"
-  },
-  "repository": {
-    "type": "git",
-    "directory": "https://github.com/DmitryMukhlisov/pawn.git"
-  },
-  "version": "0.2.6",
-  "publisher": "ilkol",
-  "icon": "pawn.png",
-  "engines": {
-    "vscode": "^1.83.0"
-  },
-  "categories": [
-    "Programming Languages"
-  ],
-  "activationEvents": [
-    "onLanguage:pawn"
-  ],
-  "main": "./out/extension.js",
-  "contributes": {
-    "snippets": [
-      {
-        "language": "pawn",
-        "path": "./snippets/snippets.code-snippets"
-      }
-    ],
-    "languages": [
-      {
-        "id": "pawn",
-        "aliases": [
-			"pwn",
-			"pawno"
+	"name": "pawnlanguage",
+	"version": "0.2.6",
+	"displayName": "The Pawn Language",
+	"publisher": "ilkol",
+	"engines": {
+		"vscode": "^1.83.0"
+	},
+	"author": {
+		"name": "il_kol"
+	},
+	"repository": {
+		"type": "git",
+		"directory": "https://github.com/DmitryMukhlisov/pawn.git"
+	},
+	"categories": [
+		"Programming Languages",
+		"Snippets"
+	],
+	"icon": "pawn.png",
+	"main": "./dist/extension.js",
+	"galleryBanner": {
+		"color": "#005089",
+		"theme": "dark"
+	},
+	"contributes": {
+		"snippets": [
+			{
+				"language": "pawn",
+				"path": "./snippets/snippets.code-snippets"
+			}
 		],
-        "extensions": [
-          ".pwn",
-          ".inc"
-        ],
-        "icon": {
-          "light": "./pawn_dark.svg",
-          "dark": "./pawn_dark.svg"
-        },
-        "configuration": "./language-configuration.json"
-      }
-    ],
-    "grammars": [
-      {
-        "language": "pawn",
-        "scopeName": "source.pawn",
-        "path": "./syntaxes/pawn.tmLanguage.json"
-      }
-    ]
-  },
-  "dependencies": {
-    "findup-sync": "^0.1.2",
-    "vsce": "^2.15.0"
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts"
-  },
-  "devDependencies": {
-    "@types/glob": "^8.1.0",
-    "@types/mocha": "^10.0.2",
-    "@types/node": "^20.8.6",
-    "@types/vscode": "^1.83.0",
-    "@typescript-eslint/eslint-plugin": "^6.7.5",
-    "@typescript-eslint/parser": "^6.7.5",
-    "@vscode/test-electron": "^2.3.5",
-    "eslint": "^8.51.0",
-    "glob": "^10.3.10",
-    "mocha": "^10.2.0",
-    "typescript": "^5.2.2"
-  }
+		"languages": [
+			{
+				"id": "pawn",
+				"aliases": [
+					"pwn",
+					"pawno"
+				],
+				"extensions": [
+					".pwn",
+					".inc"
+				],
+				"icon": {
+					"light": "./pawn_dark.svg",
+					"dark": "./pawn_dark.svg"
+				},
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "pawn",
+				"scopeName": "source.pawn",
+				"path": "./syntaxes/pawn.tmLanguage.json"
+			}
+		]
+	},
+	"dependencies": {
+		"findup-sync": "^5.0.0",
+		"vsce": "^2.15.0"
+	},
+	"scripts": {
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"compile": "npm run check-types && node esbuild.js",
+		"check-types": "tsc --noEmit",
+		"watch": "npm-run-all -p watch:*",
+		"watch:esbuild": "node esbuild.js --watch",
+		"watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+		"vscode:prepublish": "npm run package",
+		"package": "npm run check-types && node esbuild.js --production"
+	},
+	"devDependencies": {
+		"@types/glob": "^8.1.0",
+		"@types/mocha": "^10.0.2",
+		"@types/node": "^20.8.6",
+		"@types/vscode": "^1.83.0",
+		"@typescript-eslint/eslint-plugin": "^6.7.5",
+		"@typescript-eslint/parser": "^6.7.5",
+		"@vscode/test-electron": "^2.3.5",
+		"esbuild": "^0.23.1",
+		"eslint": "^8.51.0",
+		"glob": "^10.3.10",
+		"mocha": "^10.2.0",
+		"typescript": "^5.2.2"
+	}
 }
