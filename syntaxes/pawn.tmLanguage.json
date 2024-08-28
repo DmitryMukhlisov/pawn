@@ -18,6 +18,9 @@
 			"include": "#function"
 		},
 		{
+			"include": "#operator_overload"
+		},
+		{
 			"include": "#evaluation_context"
 		},
 		{
@@ -446,6 +449,9 @@
 		"comments":{
 			"patterns": [
 				{
+					"include": "#block_docs"
+				},
+				{
 					"include": "#line_comment"
 				},
 				{
@@ -453,8 +459,104 @@
 				}
 			]
 		},
+		"block_docs":{
+			"name": "comment.block.documentation.pawn",
+			"begin": "/\\*\\*",
+			"end": "\\*/",
+			"patterns": [
+				{
+					"begin": "(@param)(?:\\s+(\\w+))?(?:\\s+(\\w+))?",
+					"beginCaptures": {
+						"1":{
+							"name": "keyword.other.pawn"
+						},
+						"2":{
+							"patterns": [
+								{
+									"include": "#type_name"
+								}
+							]
+						},
+						"3":{
+							"name": "variable.other.pawn"
+						}
+					},
+					"end": "\\r?\\n"
+				},
+				{
+					"begin": "(@return)(?:\\s+(\\w+))?",
+					"beginCaptures": {
+						"1":{
+							"name": "keyword.other.pawn"
+						},
+						"2":{
+							"patterns": [
+								{
+									"include": "#type_name"
+								}
+							]
+						}
+					},
+					"end": "\\r?\\n"
+				},
+				{
+					"include": "#docs_old"
+				}
+			]
+		},
+		"docs_old":
+		{
+			"patterns": [
+				{
+					"begin": "<(summary)>",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.other.pawn"
+						}
+					},
+					"end": "</(summary)>",
+					"endCaptures": {
+						"1": {
+							"name": "keyword.other.pawn"
+						}
+					}
+				},
+				{
+					"begin": "<(returns)>",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.other.pawn"
+						}
+					},
+					"end": "</(returns)>",
+					"endCaptures": {
+						"1": {
+							"name": "keyword.other.pawn"
+						}
+					}
+				}
+				,
+				{
+					"begin": "<(param)\\s+name\\s*=\\s*\"(.+?)\"\\s*>",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.other.pawn"
+						},
+						"2": {
+							"name": "variable.other.pawn"
+						}
+					},
+					"end": "</(param)>",
+					"endCaptures": {
+						"1": {
+							"name": "keyword.other.pawn"
+						}
+					}
+				}
+			]
+		},
 		"block_comment":{
-			"name": "comment.block",
+			"name": "comment.block.pawn",
 			"begin": "/\\*",
 			"end": "\\*/"
 		},
@@ -783,7 +885,7 @@
 		},
 		"function":{
 			"name": "meta.function.definition.pawn",
-			"begin": "^\\s*(?:(publics:|public|forward|native|stock)\\s)?\\s*((?<!\\w)(?:(?:(?:(?:_)|(?:void)|(?:Float)|(?:bool)))|(?:[a-zA-Z_]\\w*)(?:\\s|\\n)*:))?(\\w+)(?:\\()",
+			"begin": "^\\s*(?:(publics:|public|forward|native|stock)\\s)?\\s*((?<!\\w)(?:(?:\\w+)(?:\\s|\\n)*:\\s*))?([@\\w]+)(?:\\()",
 			"beginCaptures": {
 				"0": {
 					"name": "meta.head.function.definition.pawn"
@@ -806,7 +908,7 @@
 					"name": "entity.name.function.definition.pawn"
 				}
 			},
-			"end": "(?:(?<=\\})|(?=[;>\\[\\]=]))",
+			"end": "(?:(?<=\\})|(?=[;>\\[\\]]))",
 			"endCaptures": {},
 			"patterns": [
 				{
@@ -847,6 +949,117 @@
 								}
 							]
 							
+						},
+						{
+							"begin": "=",
+							"end": "$",
+							"patterns": [
+								{
+									"match": "\\w+",
+									"name": "entity.name.function.pawn"
+								}	
+
+							]
+						}
+					]
+				},
+				{
+					"begin": "(?<=\\{)",
+					"end": "\\}",
+					"beginCaptures": {},
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.section.block.end.bracket.curly.function.definition.pawn"
+						}
+					},
+					"name": "meta.body.function.definition.pawn",
+					"patterns": [
+						{
+							"include": "#function_body_context"
+						}
+					]
+				}
+				
+			]
+		},
+		"operator_overload":{
+			"name": "meta.function.definition.pawn",
+			"begin": "^\\s*(?:(public|forward|native|stock)\\s)?\\s*((?<!\\w)(?:(?:\\w+)(?:\\s|\\n)*:\\s*))?(operator(?:\\*|\\/|\\+|-|=|\\+\\+|--|==|!=|>|<|>=|<=|!|%|&|\\^))(?:\\()",
+			"beginCaptures": {
+				"0": {
+					"name": "meta.head.function.definition.pawn"
+				},
+				"1": {
+					"patterns": [
+						{
+							"include": "#declaration_functions"
+						}
+					]	
+				},
+				"2":{
+					"patterns": [
+						{
+							"include": "#types"
+						}
+					]
+				},
+				"3":{
+					"name": "entity.name.function.definition.pawn"
+				}
+			},
+			"end": "(?:(?<=\\})|(?=[;>\\[\\]]))",
+			"endCaptures": {},
+			"patterns": [
+				{
+					"name": "test",
+					"begin": "\\G",
+					"end": "(?:\\{|(?=;))",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.section.block.begin.bracket.curly.function.definition.pawn"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#ever_present_context"
+						},
+						{
+							"begin": "\\G",
+							"end": "\\)",
+							"name": "meta.head.function.definition.pawn",
+							"patterns": [
+								{
+									"include": "#ever_present_context"
+								},
+								{
+									"include": "#parameter_or_maybe_value"
+								},
+								{
+									"include": "#evaluation_context"
+								}
+							]
+						},
+						{
+							"begin": "(?=\\w)",
+							"end": "(?=;)",
+							"name": "meta.body.function.definition.pawn",
+							"patterns": [
+								{
+									"include": "#function_body_context"
+								}
+							]
+							
+						},
+						{
+							"begin": "=",
+							"end": "(?=;)",
+							"patterns": [
+								{
+									"match": "\\w+",
+									"name": "entity.name.function.pawn"
+								}	
+
+							]
 						}
 					]
 				},
@@ -1070,7 +1283,7 @@
 			"match": "\\="
 		},
 		"parameter_or_maybe_value":{
-			"begin": "((?:(?:(?:\\s*+(\\/\\*)((?:[^\\*]++|\\*+(?!\\/))*+(\\*\\/))\\s*+)+)|(?:\\s++)|(?<=\\W)|(?=\\W)|^|(?:\\n?$)|\\A|\\Z))(?=[\\w\"'])",
+			"begin": "((?:(?:(?:\\s*+(\\/\\*)((?:[^\\*]++|\\*+(?!\\/))*+(\\*\\/))\\s*+)+)|(?:\\s++)|(?<=\\W)|(?=\\W)|^|(?:\\n?$)|\\A|\\Z))(?=[\\w&{\"'])",
 			"end": "(?:(?=\\))|(,))",
 			"beginCaptures": {
 				"1": {
@@ -1098,10 +1311,7 @@
 			"name": "meta.parameter.pawn",
 			"patterns": [
 				{
-					"include": "#language_constants"
-				},
-				{
-					"match": "((?:(?:(?:(?:static)|(?:const))))+(?:\\s+))?(?:&\\w*)?((?<!\\w)(?:(?:(?:(?:_)|(?:void)|(?:Float)|(?:bool)))|(?:[a-zA-Z_]\\w*)(?:\\s|\\n)*:))?([a-zA-Z_]\\w*)(?:\\s*)(?=,|\\[|=|\\))",
+					"match": "((?:static|const)+\\s+)?(\\s*&\\s*)?(?:([a-zA-Z_]\\w*|{[a-zA-Z_]\\w*(?:\\s*,\\s*[a-zA-Z_]\\w*)*})\\s*:\\s*)?([a-zA-Z_]\\w*|\\.\\.\\.)(?:\\[.*?\\])?(?:\\s*)(?=,|=|;|\\))",
 					"captures": {
 						"1": {
 							"patterns": [
@@ -1111,14 +1321,27 @@
 							]
 						},
 						"2": {
+							"name": "storage.modifier.reference.pawn"
+						},
+						"3": {
 							"patterns": [
 								{
 									"include": "#types"
 								}
 							]
 						},
-						"3": {
+						"4": {
 							"name": "variable.parameter.pawn"
+						},
+						"5": {
+							"patterns": [
+								{
+									"include": "#evaluation_context"
+								},
+								{
+									"include": "#variable"
+								}
+							]
 						}
 					}
 				},
@@ -1134,6 +1357,9 @@
 					"patterns": [
 						{
 							"include": "#evaluation_context"
+						},
+						{
+							"include": "#variable"
 						}
 					]
 				},
@@ -1191,7 +1417,7 @@
 		"operators": {
 			"patterns": [
 				{
-					"begin": "((?<!\\w)sizeof)\\(",
+					"begin": "((?<!\\w)sizeof)\\s*\\(",
 					"end": "\\)",
 					"beginCaptures": {
 						"1": {
@@ -1207,8 +1433,15 @@
 					"patterns": [
 						{
 							"include": "#evaluation_context"
+						},
+						{
+							"include": "#variable"
 						}
 					]
+				},
+				{
+					"match": "sizeof",
+					"name": "keyword.operator.functionlike.pawn keyword.operator.sizeof.pawn"
 				},
 				{
 					"match": "--",
@@ -1381,31 +1614,28 @@
 		},
 		"new_var":{
 			"name": "meta.initialization.pawn",
-			"begin": "(\\bnew)[\\s\\n]+((?:const[\\s\\n]+)?(?:static[\\s\\n]+)?(?:stock[\\s\\n]+))*",
+			"begin": "\\b(new\\s+)?(?=const|static|stock\\s*)",
 			"beginCaptures": {
 				"1":{
 					"name": "keyword.control.$1.pawn"
-				},
-				"2":{
-					"patterns": [
-						{
-							"include": "#storage_modifier"
-						},
-						{
-							"include": "#declaration_functions"
-						}		
-					]
 				}
 			},
 			"end": "(?=;|\\))",
 			"patterns": [
 				{
+					"include": "#storage_modifier"
+				},
+				{
+					"include": "#declaration_functions"
+				},		
+				{
 					"begin": "(?=\\w)",
 					"end": "(?:(?=;|\\))|(,))",
 					"patterns": [
 						{
-							"match": "((?:(?:(?:(?:static)|(?:const))))+(?:\\s+))?((?<!\\w)(?:(?:(?:(?:_)|(?:void)|(?:Float)|(?:bool)))|(?:[a-zA-Z_]\\w*)(?:\\s|\\n)*:))?\\s*([a-zA-Z_]\\w*)(?:\\s*)(?=,|\\[|=|;|\\))",
-							"captures": {
+							"begin": "((?:(?:(?:(?:static)|(?:const))))+(?:\\s+))?((?<!\\w)(?:(?:[a-zA-Z_]\\w*)(?:\\s|\\n)*:))?\\s*([a-zA-Z_]\\w*)(?:\\s*)(?=,|\\[|=|;|\\))",
+							"end": "(?:(?=;|\\))|(,))",
+							"beginCaptures": {
 								"1": {
 									"patterns": [
 										{
@@ -1423,7 +1653,19 @@
 								"3": {
 									"name": "variable.other.pawn"
 								}
-							}
+							},
+							"patterns":
+							[
+								{
+									"include": "#number_literal"
+								},
+								{
+									"include": "#square_brackets"	
+								},
+								{
+									"include": "#evaluation_context"
+								}	
+							]						
 						},
 						{
 							"include": "#number_literal"
@@ -1519,8 +1761,8 @@
 				}
 			}
 		},
-		"types":{
-			"match": "(?:\\b(void|_|bool|Float)\\b)*([\\w\\d_-]+)*",
+		"type_name": {
+			"match": "\\b(void|_|bool|Float)|([\\w\\d_-]+)\\b",
 			"captures": {
 				"1":{
 					"patterns": [
@@ -1543,12 +1785,27 @@
 					"name": "storage.pawn"
 				}
 			}
-			
+		},
+		"types":{
+			"patterns": [
+				{
+					"begin": "{",
+					"end": "}",
+					"patterns": [
+						{
+							"include": "#type_name"	
+						}
+					]
+				},
+				{
+					"include": "#type_name"	
+				}
+			]
 			
 		},
 		"type":{
 			"match": "[\\w\\d_-]*",
-			"name": "entity.name.type"
+			"name": "entity.name.type.pawn"
 		},
 		"type_int":{
 			"match": "\\b_\\b",
