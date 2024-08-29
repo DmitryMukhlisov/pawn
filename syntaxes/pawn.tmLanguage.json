@@ -1614,10 +1614,13 @@
 		},
 		"new_var":{
 			"name": "meta.initialization.pawn",
-			"begin": "\\b(new\\s+)?(?=const|static|stock\\s*)",
+			"begin": "\\b(new)|(static|const|stock)",
 			"beginCaptures": {
 				"1":{
 					"name": "keyword.control.$1.pawn"
+				},
+				"2":{
+					"name": "storage.$1.modifier"
 				}
 			},
 			"end": "(?=;|\\))",
